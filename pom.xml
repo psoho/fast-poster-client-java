@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.psoho</groupId>
     <artifactId>fast-poster-client</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>2.9.0</version>
     <name>fast-poster-client</name>
     <description>Demo project for fast-poster-client</description>
 

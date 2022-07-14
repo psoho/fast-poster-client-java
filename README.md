@@ -1,136 +1,108 @@
-## fastposter海报生成器
+<p align="center"><a href="https://poster.prodapi.cn/doc/" target="_blank"><img width="100" src="https://poster.prodapi.cn/doc/assets/dragonfly.svg" alt="fast-poster logo"></a></p>
 
-### 介绍
+<p align="center">
+  <a href="https://github.com/psoho/fast-poster" class="link github-link" target="_blank"><img style="max-width: 100px;" alt="GitHub Repo stars" src="https://img.shields.io/github/stars/psoho/fast-poster?style=social"></a>
+  <a href="https://gitee.com/psoho/fast-poster" class="link gitee-link" target="_blank"><img style="max-width: 100px;" alt="gitee Repo stars" src="https://gitee.com/psoho/fast-poster/badge/star.svg"></a>
+  <img alt="csharp" src="https://img.shields.io/badge/language-python-yellow.svg">
+  <img alt="csharp" src="https://img.shields.io/badge/language-vue-brightgreen.svg">
+  <img alt="license" src="https://img.shields.io/badge/license-GPL3.0-blue.svg">
+  <img alt="version" src="https://img.shields.io/badge/version-2.9.0-brightgreen">
+</p>
 
-**fastposter海报生成器，一分钟完成海报开发。**
+## 介绍
 
-- 在线体验：[https://poster.prodapi.cn/](https://poster.prodapi.cn/#from=v1.4.2)
-- 只要一个 [Github Star](https://github.com/psoho/fast-poster) 就可以鼓励作者尽快完成 `剩下的 15%`
-- 只要一个 [Gitee Star](https://gitee.com/psoho/fast-poster) 就可以鼓励作者尽快完成 `剩下的 15%`
+🔥🔥🔥 fastposter海报生成器是一款快速开发海报的工具。只需上传一张背景图，在对应的位置放上组件（`文字`、`图片`、`二维码`、`头像`）即可生成海报。 点击`代码`直接生成各种语言的调用代码，方便快速开发。
 
-### 特性
+现已服务众多电商类项⽬，多个项⽬有`49W+`⽤户，通过多年⽣产环境的考验，稳定可靠。广泛应用于各类电商、分销系统、电商海报、电商主图等海报生成和制作场景。
 
-- 快速：三步完成海报开发工作
-- 易用：无需名师指导，组件丰富、支持拖拽、复制、所见即所得、下载等功能
-- 强大：不惧怕设计师更改海报设计，无需更改代码，从容应对UI变更
-- 高效：只需拖拽组件就能生成海报的调用代码，极大降低开发人员的工作量
+## 文档
 
-### 示例代码
+- 开发文档：[https://poster.prodapi.cn/doc/](https://poster.prodapi.cn/doc/)
+- 在线体验：[https://poster.prodapi.cn/](https://poster.prodapi.cn/#from=2.9.0)
+- 专业版-Python：[https://poster.prodapi.cn/pro/](https://poster.prodapi.cn/pro/#from=2.9.0)
+- 专业版-Java：[https://poster.prodapi.cn/pro/java/](https://poster.prodapi.cn/pro/java/#from=2.9.0)
 
-```java
-public static void main(String[] args) throws IOException {
+> 你点亮的小星星，正在加速项目开发迭代
 
-  // 创建海报客户端对象
-  FastPosterClient client = new FastPosterClient("https://poster.prodapi.cn/", "ApfrIzxCoK1DwNZO", "EJCwlrnv6QZ0PCdvrWGi");
+## 特性
 
-  // 构造海报参数
-  HashMap<String, String> params = new HashMap<>();
-  // 暂未指定任何动态参数
+- 支持docker快速部署
+- 支持电商级生产环境
+- 支持多种编程语言 `Java` `Python` `PHP` `Golang` `JavaScript` `小程序`
+- 无需编写复杂的绘图渲染代码
+- 极低的服务器资源开销
+- 支持多种文件格式 `jpeg` `png` `webp` `pdf` `base64`
+- 便捷的代码生成
+- 提供常用的组件 `文字` `头像` `图片` `二维码`
 
-  // 海报ID
-  String posterId = "25";
 
-  // 获取下载地址
-  String url = client.getUrl(posterId, params);
-  System.out.println("url=" + url);
+## 快速开始
 
-  // 保存到本地
-  client.saveToPath(url, "temp.png");
+### 一、启动服务
 
-  // base64测试
-  String b64 = new String(client.getData(url.replace("/view/", "/b64/")));
-  System.out.println(b64);
+```bash
+docker run -it --name fast-poster -p 5000:5000 tangweixin/fast-poster
+```
 
-  // 验证
-  String data = "<img src=\"data:image/jpg;base64," + b64 + "\"/>";
-  FileUtils.writeStringToFile(new File("b64.html"), data, "utf-8");
+### 二、编辑海报
 
+![fastposter编辑海报](https://poster.prodapi.cn/doc/assets/image-20220407142530149.png)
+
+
+### 三、生成代码
+
+![fastposter生成代码](https://poster.prodapi.cn/doc/assets/image-20220407142705928.png)
+
+请求示例（可直接传递需要的参数）
+
+```bash
+curl --location --request POST 'https://poster.prodapi.cn/api/link' \
+--header 'Content-Type: application/json' \
+--header 'token: ApfrIzxCoK1DwNZOEJCwlrnv6QZ0PCdv' \
+--data-raw '{
+  "title": "人工智能+机器学习",
+  "id": 2
+}'
+```
+
+响应示例（返回海报的访问地址）
+
+```json
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "url": "https://poster.prodapi.cn/v/90295c118d4c8802"
+    }
 }
 ```
 
-### 三步完成海报开发工作
+## 适用场景
 
-#### 一、启动服务
+- 海报生成器
+- 海报自动生成工具
+- 海报在线设计生成器
+- 海报生成器在线制作
+- 生成朋友圈海报
+- 电商海报编辑器
+- 证书制作
+- 证书自动生成工具
+- 二维码分享海报图片
+- Python Pillow绘图 Pillow制作海报
+- 电商主图编辑器
+- Java生成二维码分享海报图片
+- Java Graphics2D绘制海报图片
+- 微信小程序生成海报分享朋友圈
+- PHP生成二维码海报图片
+- 自定义商业海报图片
+- H5生成海报图片
+- canvas生成海报图片
+- 通过JSON生成海报图片
+- BufferdImage绘制图片
 
-1. 通过docker启动:
-```bash
-docker run --name fast-poster -p 9001:9001 tangweixin/fast-poster
-```
+## 社区
 
-2. 通过代码启动:
+作者微信`fastposter`
 
-```bash
-# 安装依赖 
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
+![fastposer作者微信](https://poster.prodapi.cn/doc/assets/qrcode.jpeg)
 
-# 启动应用（需要在当前代码目录运行）
-python app.py -k ApfrIzxCoK1DwNZO -s EJCwlrnv6QZ0PCdvrWGi
-```
-
-3.  打开浏览器: [http://127.0.0.1:9001/](http://127.0.0.1:9001/)
-
-#### 二、编辑海报
-
-点击`新建`按钮，在`海报设置` > `背景图⽚` ，点击`上传`⼀个海报背景图。
-
-点击所需的控件【⽂本、⼆维码、头像、图⽚】，拖动调整位置，设置相关参数。
-
-点击`预览`，可以实时查看最终⽣成的效果。
-
-![输入图片说明](https://fastposter.oss-cn-shanghai.aliyuncs.com/v1.4.0/WX20210707-232649%402x.png)
-
-#### 三、生成代码：
-
-保存海报，然后点击`代码`，可以查看相关的语言调⽤代码。
-
-![输入图片说明](https://fastposter.oss-cn-shanghai.aliyuncs.com/v1.4.0/WX20210707-232717%402x.png)
-
-
-### 参与贡献
-
-* [Alex-独孤求胜](https://gitee.com/sunlightcs)
-* [nico1988](https://gitee.com/nico1988)
-* [tangweixin](https://gitee.com/tangweixin)
-
-### 赞赏
-
-如果`fastposter`给您带了方便，不妨支持一下我们这个小团队。
-
-![输入图片说明](https://fastposter.oss-cn-shanghai.aliyuncs.com/v1.4.0/%E6%8D%90%E8%B5%A0.jpg)
-
-### 项目背景
-
-在以前，通过程序绘制海报，需要熟悉各种语言底层（枯涩难懂）的绘图API，如`Java`需要熟悉`Graphics2D`。 接下来就是各种元素位置的调整，这是相当费眼睛的开发。
-
-于是，一个通用的海报生成器应运而生，让开发人员无需关心底层的绘图API，用所见即所得的方式来完成开发。有更多的时间陪伴家人和朋友。
-
-经过N次迭代和线上生产环境的考验。
-
-`fastposter`海报生成器，是经过众多电商项⽬后，由于经常遇到需要⽣成海报的需求，所以特别开发的⼀款⼯具。
-
-期间也参考了很多类似项⽬，最开始⽤ `Java` 实现。后⾯发现海报效果不是特别理想，达不到像素级要求。最后使⽤ `Python` 全⾯重构，效果⽐较满意。
-
-现在已经服务了好⼏个电商项⽬，多个项⽬有`33.8W+`⽤户，通过过⽣产的考验，稳定可靠。
-
-如果⼤家在使⽤过程中，发现有任何问题，欢迎添加 微信 进⾏反馈。
-
-### 授权说明
-
-从v1.4.0版本开始，为了项目和团队的健康发展，我们修改开源授权许可协议为GPL3.0，请商业使用的小伙伴注意。如果需要更宽松的授权，请扫码联系我们。
-
-### 软件架构
-
-技术栈
-* `Java`
-* `Python`
-* `Tornado`
-* `Vue`
-* `Vuex`
-
-客户端调用支持`Java` `Python` `PHP` `cURL` `JS` 等可以发送`HTTP`请求的语言.
-
-### 性能测试
-
-```bash
-wrk -d 6s http://127.0.0.1:9001/view/5b0b06feeb582fdce2973a4ae227b2f0.png
-```
